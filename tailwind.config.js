@@ -2,9 +2,14 @@
 export default {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        round: "0px 0px 15px 5px rgba(0,0,0,0.1)",
+      },
+    },
     fontFamily: {
       wdxl: ["WDXL Lubrifont SC, sans-serif"],
+      roboto: ["Roboto, sans-serif"],
     },
   },
   plugins: [],

@@ -1,12 +1,13 @@
 <template>
-  <div class="font-wdxl p-4 bg-blue-500 text-white rounded-lg gap-8 py-6">
-    <i class="fa-solid fa-house"></i>
-    如果此框有蓝色背景+白字+圆角，则Tailwind工作正常
+  <div class="bg-slate-200 w-screen h-screen flex flex-row">
+    <SideNavigator />
+    <div class="px-14 py-10">
+      <RouterView></RouterView>
+    </div>
   </div>
-
-  <el-button>Default</el-button>
 </template>
 
-<script setup lang="ts"></script>
-
-<style scoped></style>
+<script setup lang="ts">
+import SideNavigator from "./components/SideNavigator.vue";
+import HeadNavigator from "./components/HeadNavigator.vue";
+</script>

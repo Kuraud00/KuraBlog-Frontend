@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-60 h-[500px] rounded-xl bg-white shadow-round text-center pt-8 flex flex-col space-y-6 items-center"
+    class=" w-[300px] h-[500px] rounded-xl bg-white shadow-round text-center pt-8 flex flex-col space-y-6 items-center"
   >
     <img class="w-40 h-40 rounded-full overflow-hidden shadow-round object-cover" :src="requestURL"></img>
     <span class="font-wdxl font-bold text-3xl text-slate-600">Kuraud0</span>

@@ -3,12 +3,6 @@
     <ProfileCard></ProfileCard>
     <div class="h-full flex-1 overflow-y-auto space-y-10 px-8">
       <WelcomeCard></WelcomeCard>
-      <WelcomeCard></WelcomeCard>
-      <WelcomeCard></WelcomeCard>
-      <WelcomeCard></WelcomeCard>
-      <WelcomeCard></WelcomeCard>
-      <WelcomeCard></WelcomeCard>
-      <WelcomeCard></WelcomeCard>
     </div>
   </div>
 </template>

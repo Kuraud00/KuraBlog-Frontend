@@ -10,6 +10,7 @@ export default {
     fontFamily: {
       wdxl: ["WDXL Lubrifont SC, sans-serif"],
       roboto: ["Roboto, sans-serif"],
+      noto: ["Noto Sans SC, sans-serif"],
     },
   },
   plugins: [],

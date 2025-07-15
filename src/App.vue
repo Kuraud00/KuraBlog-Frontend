@@ -1,7 +1,7 @@
 <template>
   <div class="bg-slate-200 w-screen h-screen flex flex-row">
     <SideNavigator />
-    <div class="px-14 py-10">
+    <div class="px-14 py-10 flex-1">
       <RouterView></RouterView>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class=" w-[300px] h-[500px] rounded-xl bg-white shadow-round text-center pt-8 flex flex-col space-y-6 items-center"
+    class="w-[300px] h-[500px] rounded-xl bg-white shadow-round text-center pt-8 flex flex-col space-y-6 items-center select-none"
   >
     <img class="w-40 h-40 rounded-full overflow-hidden shadow-round object-cover" :src="requestURL"></img>
     <span class="font-wdxl font-bold text-3xl text-slate-600">Kuraud0</span>
@@ -15,13 +15,13 @@
     </span>
 
     <span class="flex flex-row text-3xl space-x-6 text-slate-600 content-center">
-      <a href="https://github.com/Kuraud00">
+      <a href="https://github.com/Kuraud00" target="_blank">
         <i class="fa-brands fa-github"></i>
       </a>
-      <a href="https://space.bilibili.com/481177373">
+      <a href="https://space.bilibili.com/481177373" target="_blank">
         <i class="fa-brands fa-bilibili"></i>
       </a>
-      <a href="">
+      <a href="" target="_blank">
         <i class="fa-brands fa-qq"></i>
       </a>
     </span>

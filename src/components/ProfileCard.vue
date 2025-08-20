@@ -15,13 +15,13 @@
     </span>
 
     <span class="flex flex-row text-3xl space-x-6 text-slate-600 content-center">
-      <a href="https://github.com/Kuraud00" target="_blank">
+      <a href="https://github.com/Kuraud00" target="_blank" class="transition-all hover:text-slate-400">
         <i class="fa-brands fa-github"></i>
       </a>
-      <a href="https://space.bilibili.com/481177373" target="_blank">
+      <a href="https://space.bilibili.com/481177373" target="_blank" class="transition-all hover:text-slate-400">
         <i class="fa-brands fa-bilibili"></i>
       </a>
-      <a href="" target="_blank">
+      <a href="" target="_blank" class="transition-all hover:text-slate-400">
         <i class="fa-brands fa-qq"></i>
       </a>
     </span>

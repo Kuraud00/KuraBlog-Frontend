@@ -4,6 +4,7 @@ import Home from "@/views/Home.vue";
 import About from "@/views/About.vue";
 import Blog from "@/views/Blog.vue";
 import Project from "@/views/Project.vue";
+import Profile from "@/views/Profile.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -23,6 +24,10 @@ const router = createRouter({
     {
       path: "/project",
       component: Project,
+    },
+    {
+      path: "/profile",
+      component: Profile,
     },
     {
       path: "/",

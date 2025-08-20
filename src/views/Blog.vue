@@ -1,3 +1,5 @@
-<template>Blog</template>
+<template>
+  <div>Blog</div>
+</template>
 
 <script setup></script>

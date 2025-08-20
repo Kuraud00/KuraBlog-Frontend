@@ -25,6 +25,7 @@
       </RouterLink>
 
       <div class="mt-auto text-center">
+        <User :is-navigator-open="isNavigatorOpen" />
         <i
           class="fa-solid fa-down-left-and-up-right-to-center transition-colors hover:bg-slate-500 p-4 rounded-lg"
           @click="toggleNavigator"
@@ -37,22 +38,18 @@
         ></i>
       </div>
     </div>
-    <!-- 开关区域
-    <aside
-      class="h-32 w-4 bg-slate-600 rounded-e-2xl transition-all hover:bg-slate-500 flex items-center"
-      @click="toggleNavigator()"
-    >
-      <i
-        class="fa-solid text-white"
-        :class="{ 'fa-chevron-right': !isNavigatorOpen, 'fa-chevron-left': isNavigatorOpen }"
-      ></i>
-    </aside> -->
   </aside>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { menuItem } from "@/types/Navigator";
+import User from "./User.vue";
+
+type menuItem = {
+  icon: string;
+  description: string;
+  direction: string;
+};
 
 const isNavigatorOpen = ref(true);
 const toggleNavigator = () => {

@@ -4,13 +4,16 @@
     <div class="flex flex-col items-center md:border-r md:pr-8 border-gray-200">
       <div class="relative mb-8">
         <img
-          :src="userStore.avatar || '#'"
+          :src="
+            userStore.avatar ||
+            'https://kurablog.oss-cn-hangzhou.aliyuncs.com/f88e6af7-a48c-4165-a88a-c3cd72743818.jpg'
+          "
           class="w-40 h-40 rounded-full object-cover border-4 border-white shadow-lg"
         />
         <el-tooltip content="更换头像" placement="top">
           <el-upload
             class="avatar-upload absolute bottom-2 right-2"
-            action="#"
+            :http-request="handleAvatarUpload"
             :show-file-list="false"
             :before-upload="beforeAvatarUpload"
           >
@@ -135,6 +138,17 @@ const beforeAvatarUpload: UploadProps["beforeUpload"] = (rawFile) => {
     return false;
   }
   return true;
+};
+
+const handleAvatarUpload = async (options) => {
+  const { file } = options;
+
+  // 创建FormData对象
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("filename", file.name);
+
+  await userStore.uploadAvatar(formData);
 };
 </script>
 

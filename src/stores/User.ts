@@ -44,5 +44,22 @@ export const useUserStore = defineStore("User", () => {
     await this.refresh();
   }
 
-  return { username, description, avatar, birthday, email, registerTime, refresh, logout, update };
+  async function uploadAvatar(formData: FormData) {
+    const response = await UserAPI.uploadAvatar(formData);
+    ElMessage.success("上传成功");
+    avatar.value = response.data.data;
+  }
+
+  return {
+    username,
+    description,
+    avatar,
+    birthday,
+    email,
+    registerTime,
+    refresh,
+    logout,
+    update,
+    uploadAvatar,
+  };
 });

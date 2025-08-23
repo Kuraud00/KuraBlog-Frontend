@@ -4,7 +4,10 @@
     @click="handleClick"
   >
     <img
-      :src="userStore.avatar || 'block'"
+      :src="
+        userStore.avatar ||
+        'https://kurablog.oss-cn-hangzhou.aliyuncs.com/f88e6af7-a48c-4165-a88a-c3cd72743818.jpg'
+      "
       alt="avatar"
       class="object-cover rounded-full w-14 h-14 border-slate-200 border-4 shadow-md hover:-translate-y-1 transition-all"
     />

@@ -27,8 +27,12 @@ const UserAPI = {
     return axiosInstance.put("/user", data);
   },
 
-  async uploadAvatar() {
-    return axiosInstance.post("/upload");
+  async uploadAvatar(formData: FormData) {
+    return axiosInstance.post("/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data", // 必须设置 multipart 格式
+      },
+    });
   },
 };
 

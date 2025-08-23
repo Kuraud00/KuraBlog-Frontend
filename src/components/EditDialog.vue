@@ -40,6 +40,7 @@ import { ref } from "vue";
 import { user } from "@/stores/User";
 import { useUserStore } from "@/stores/User";
 
+// 向上暴露openDialog，updateEditForm方法
 const showEditDialog = ref(false);
 const openDialog = () => {
   showEditDialog.value = true;

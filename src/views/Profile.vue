@@ -78,7 +78,7 @@
               <p class="text-sm text-gray-500">注册时间</p>
               <p class="text-lg font-medium text-gray-800 flex items-center">
                 <i class="fa-solid fa-calendar-days mr-2"></i>
-                {{ formattedDate || "未设置" }}
+                {{ formattedRegisterDate || "未设置" }}
               </p>
             </div>
 
@@ -94,7 +94,7 @@
     </div>
 
     <!-- 统计数据区域 -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
       <div class="bg-white rounded-xl p-6 shadow flex items-center">
         <div class="bg-blue-100 p-4 rounded-full mr-4">
           <el-icon class="text-blue-500 text-2xl"><document /></el-icon>
@@ -124,7 +124,7 @@
           <p class="text-2xl font-bold text-gray-800">356</p>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- 编辑对话框 -->
     <el-dialog title="编辑个人信息" v-model="showEditDialog" width="500px">
@@ -204,7 +204,7 @@ const saveUserInfo = async () => {
     birthday: editForm.value.birthday,
     email: editForm.value.email,
   };
-  await userStore.edit(user);
+  await userStore.update(user);
   showEditDialog.value = false;
 };
 
@@ -219,6 +219,10 @@ const formatDate = (date) => {
 
 const formattedDate = computed(() => {
   return formatDate(userStore.birthday);
+});
+
+const formattedRegisterDate = computed(() => {
+  return formatDate(userStore.registerTime);
 });
 </script>
 

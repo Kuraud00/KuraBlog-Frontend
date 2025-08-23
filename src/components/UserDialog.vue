@@ -149,7 +149,7 @@ const handleRequest = async () => {
     }
     localStorage.setItem("jwt_token", response.data.data);
     ElMessage.success("Success");
-    userStore.update();
+    userStore.refresh();
     isVisible.value = false;
   } catch (error) {
     ElMessage.error(error);

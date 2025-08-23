@@ -16,8 +16,9 @@ export const useUserStore = defineStore("User", () => {
   const avatar = ref(null);
   const birthday = ref(null);
   const email = ref(null);
+  const registerTime = ref(null);
 
-  async function update() {
+  async function refresh() {
     let response = await UserAPI.getMyself();
     console.log(response.data);
     username.value = response.data.data.username;
@@ -25,6 +26,7 @@ export const useUserStore = defineStore("User", () => {
     avatar.value = response.data.data.avatar;
     birthday.value = response.data.data.birthday;
     email.value = response.data.data.email;
+    registerTime.value = response.data.data.registerTime;
   }
 
   function logout() {
@@ -34,12 +36,13 @@ export const useUserStore = defineStore("User", () => {
     avatar.value = null;
     birthday.value = null;
     email.value = null;
+    registerTime.value = null;
   }
 
-  async function edit(data: user) {
+  async function update(data: user) {
     await UserAPI.updateMyself(data);
-    await this.update();
+    await this.refresh();
   }
 
-  return { username, description, avatar, birthday, email, update, logout, edit };
+  return { username, description, avatar, birthday, email, registerTime, refresh, logout, update };
 });

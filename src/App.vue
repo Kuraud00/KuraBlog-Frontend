@@ -26,6 +26,6 @@ import { onMounted } from "vue";
 
 onMounted(() => {
   const userStore = useUserStore();
-  userStore.update();
+  userStore.refresh();
 });
 </script>

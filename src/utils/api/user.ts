@@ -24,7 +24,11 @@ const UserAPI = {
   },
 
   async updateMyself(data) {
-    return axiosInstance.put("user", data);
+    return axiosInstance.put("/user", data);
+  },
+
+  async uploadAvatar() {
+    return axiosInstance.post("/upload");
   },
 };
 

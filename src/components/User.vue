@@ -22,7 +22,7 @@ import UserDialog from "./UserDialog.vue";
 import { ref } from "vue";
 import router from "@/router";
 import { useUserStore } from "@/stores/User";
-import { isJwtAvaliable } from "@/utils/api/jwt";
+import { JwtChecker } from "@/utils/api/jwt";
 
 defineProps({
   isNavigatorOpen: Boolean,
@@ -33,7 +33,7 @@ const userStore = useUserStore();
 
 const handleClick = async () => {
   const jwt = localStorage.getItem("jwt_token");
-  const jwtAvaliable = await isJwtAvaliable(jwt);
+  const jwtAvaliable = await JwtChecker.isJwtAvaliable(jwt);
   if (jwt && jwtAvaliable) {
     router.push("profile");
   } else {

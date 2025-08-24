@@ -40,14 +40,23 @@ export const useUserStore = defineStore("User", () => {
   }
 
   async function update(data: user) {
-    await UserAPI.updateMyself(data);
-    await this.refresh();
+    try {
+      await UserAPI.updateMyself(data);
+      await this.refresh();
+      ElMessage.success("更新完成");
+    } catch (error) {
+      ElMessage.error(error.message || "更新失败");
+    }
   }
 
   async function uploadAvatar(formData: FormData) {
-    const response = await UserAPI.uploadAvatar(formData);
-    ElMessage.success("上传成功");
-    avatar.value = response.data.data;
+    try {
+      const response = await UserAPI.uploadAvatar(formData);
+      avatar.value = response.data.data;
+      ElMessage.success("上传成功");
+    } catch (error) {
+      ElMessage.error(error.message || "上传失败");
+    }
   }
 
   return {

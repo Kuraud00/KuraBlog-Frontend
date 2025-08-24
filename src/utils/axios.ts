@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios";
-import { JwtChecker } from "./api/jwt";
+import { JwtChecker, JwtResponse } from "./api/jwt";
 
 // 创建实体对象
 const axiosInstance = axios.create({
@@ -8,12 +8,12 @@ const axiosInstance = axios.create({
 });
 
 // 是否正在刷新令牌的Promise
-let refreshTokenPromise: Promise<string> | null = null;
+let JwtTokenPromise: Promise<any> | null = null;
 
 // 请求拦截器
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const token = localStorage.getItem("jwt_token");
+    const token = localStorage.getItem("accessToken");
 
     if (token) {
       config.headers.Authorization = `${token}`;
@@ -29,11 +29,6 @@ axiosInstance.interceptors.request.use(
 // 响应拦截器
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
-    const message = response.data.message;
-    const code = response.data.code;
-    if (message === "EXPIRED_TOKEN") {
-      localStorage.removeItem("jwt_token");
-    }
     return response;
   },
   async (error: AxiosError) => {
@@ -48,18 +43,19 @@ axiosInstance.interceptors.response.use(
 
     // 开始重新获取令牌
     try {
-      // 这里逻辑还没有完善，直接掐断
-      throw error;
-
       // 若没有在获取令牌，则尝试获取令牌
-      if (!refreshTokenPromise) {
-        refreshTokenPromise = JwtChecker.refreshAccessToken();
+      if (!JwtTokenPromise) {
+        JwtTokenPromise = JwtChecker.refreshAccessToken();
       }
 
-      const newAccessToken = await refreshTokenPromise;
-      refreshTokenPromise = null;
+      const newJwtResponse = await JwtTokenPromise;
+      const newAccessToken = newJwtResponse.data.accessToken;
+      const newRefreshToken = newJwtResponse.data.refreshToken;
 
-      localStorage.setItem("jwt_token", newAccessToken);
+      JwtTokenPromise = null;
+
+      localStorage.setItem("accessToken", newAccessToken);
+      localStorage.setItem("refreshToken", newRefreshToken);
 
       if (originalRequest.headers) {
         originalRequest.headers.Authorization = newAccessToken;
@@ -69,8 +65,9 @@ axiosInstance.interceptors.response.use(
       return axiosInstance(originalRequest);
     } catch (error) {
       // 刷新令牌失败，清除存储并跳转到登录页
-      localStorage.removeItem("jwt_token");
-      // localStorage.removeItem("refreshToken");
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      console.error("请重新登录");
       // window.location.href = "/login";
       return Promise.reject(error);
     }

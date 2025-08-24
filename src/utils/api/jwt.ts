@@ -1,5 +1,9 @@
-import { error } from "console";
 import axiosInstance from "../axios";
+
+export interface JwtResponse {
+  accessToken: string;
+  refreshToken: string;
+}
 
 export const JwtChecker = {
   /**
@@ -18,10 +22,11 @@ export const JwtChecker = {
   },
 
   /**
-   * 暂时空函数
+   * 尝试通过RefrshToken获取新的AccessToken
    * @returns
    */
-  async refreshAccessToken(): Promise<string> {
-    return;
+  async refreshAccessToken(): Promise<JwtResponse> {
+    const refreshToken = localStorage.getItem("refreshToken");
+    return axiosInstance.get(`/auth/refresh/${refreshToken}`);
   },
 };

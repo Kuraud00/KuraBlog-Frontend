@@ -19,18 +19,22 @@ export const useUserStore = defineStore("User", () => {
   const registerTime = ref(null);
 
   async function refresh() {
-    let response = await UserAPI.getMyself();
-    console.log(response.data);
-    username.value = response.data.data.username;
-    description.value = response.data.data.description;
-    avatar.value = response.data.data.avatar;
-    birthday.value = response.data.data.birthday;
-    email.value = response.data.data.email;
-    registerTime.value = response.data.data.registerTime;
+    try {
+      const response = await UserAPI.getMyself();
+      username.value = response.data.data.username;
+      description.value = response.data.data.description;
+      avatar.value = response.data.data.avatar;
+      birthday.value = response.data.data.birthday;
+      email.value = response.data.data.email;
+      registerTime.value = response.data.data.registerTime;
+    } catch (error) {
+      ElMessage.error(error.message || "刷新失败");
+    }
   }
 
   function logout() {
-    localStorage.removeItem("jwt_token");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     username.value = null;
     description.value = null;
     avatar.value = null;

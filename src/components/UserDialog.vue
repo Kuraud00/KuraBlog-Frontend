@@ -144,10 +144,11 @@ const handleRequest = async () => {
       ? await UserAPI.login(username, password)
       : await UserAPI.register(username, password);
 
-    if (response.data.code === 0) {
+    if (response.status === 401) {
       throw new Error("Wrong username or password");
     }
-    localStorage.setItem("jwt_token", response.data.data);
+    localStorage.setItem("accessToken", response.data.accessToken);
+    localStorage.setItem("refreshToken", response.data.refreshToken);
     ElMessage.success("Success");
     userStore.refresh();
     isVisible.value = false;

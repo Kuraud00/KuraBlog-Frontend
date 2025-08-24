@@ -32,9 +32,8 @@ const userDialogRef = ref();
 const userStore = useUserStore();
 
 const handleClick = async () => {
-  const jwt = localStorage.getItem("jwt_token");
-  const jwtAvaliable = await JwtChecker.isJwtAvaliable(jwt);
-  if (jwt && jwtAvaliable) {
+  const jwt = localStorage.getItem("accessToken");
+  if (jwt) {
     router.push("profile");
   } else {
     if (userDialogRef.value) {

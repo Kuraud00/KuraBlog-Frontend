@@ -26,6 +26,8 @@ import { onMounted } from "vue";
 
 onMounted(() => {
   const userStore = useUserStore();
-  userStore.refresh();
+  if (localStorage.getItem("accessToken")) {
+    userStore.refresh();
+  }
 });
 </script>

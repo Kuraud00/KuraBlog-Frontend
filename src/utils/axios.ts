@@ -35,6 +35,16 @@ axiosInstance.interceptors.response.use(
     // 断言error.config为InternalAxiosRequestConfig类型并增添_retry属性
     const originalRequest = error.config as InternalAxiosRequestConfig & { _retry?: boolean };
 
+    // 排除OPTIONS请求 - 预检请求不应该触发令牌刷新
+    if (originalRequest.method?.toUpperCase() === "OPTIONS") {
+      return Promise.reject(error);
+    }
+
+    // 若不存在令牌，则直接返回不进行重试
+    if (!localStorage.getItem("accessToken") || !localStorage.getItem("refreshToken")) {
+      return Promise.reject(error);
+    }
+
     // 认证错误时，若从未更新令牌过，则重试
     // 具体来说，只有第一次遇到401错误时刷新令牌，若刷新后仍然返回401，则表明刷新令牌（refreshToken）也失效了，需要用户重新登陆来获取新的refreshToken和accessToken
     if (error.response?.status === 401 && !originalRequest._retry) {
